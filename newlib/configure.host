@@ -471,11 +471,11 @@ case "${host}" in
 	have_crt0="no"
 	;;
   arm*-*-*)
-	newlib_cflags="${newlib_cflags} -D_COMPILING_NEWLIB"
+	newlib_cflags="${newlib_cflags} -D_COMPILING_NEWLIB -D_HAVE_STDC"
 	sys_dir=arm
-	if [ "x${newlib_may_supply_syscalls}" = "xno" ] ; then
-	  have_crt0="no"
-	fi
+  newlib_cflags="${newlib_cflags} -DMALLOC_PROVIDED -DHAVE_GETTIMEOFDAY -DEXIT_PROVIDED -DMISSING_SYSCALL_NAMES -DHAVE_OPENDIR -DHAVE_RENAME"
+	newlib_cflags="${newlib_cflags} -D_NO_GETLOGIN -D_NO_GETPWENT -D_NO_GETUT -D_NO_GETPASS -D_NO_WORDEXP -D_NO_POPEN"
+	unix_dir=unix
 	;;
   bfin-*-*)
 	sys_dir=
@@ -698,7 +698,7 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
 	syscall_dir=syscalls
 	;;
   arm*-*-*)
-	syscall_dir=syscalls
+	syscall_dir=
 # If newlib is supplying syscalls, select which debug protocol is being used.
 # ARM_RDP_MONITOR selects the Demon monitor.
 # ARM_RDI_MONITOR selects the Angel monitor.

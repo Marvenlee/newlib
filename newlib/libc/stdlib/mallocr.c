@@ -610,7 +610,7 @@ do {                                                                          \
 */
 
 #ifndef HAVE_MMAP
-#define HAVE_MMAP 1
+#define HAVE_MMAP 0
 #endif
 
 /*
