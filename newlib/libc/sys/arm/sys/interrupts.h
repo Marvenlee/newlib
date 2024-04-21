@@ -8,16 +8,6 @@ extern "C" {
 #include <sys/types.h>
 
 
-struct InterruptAPI
-{
-  int (*MaskInterrupt)(int irq);
-  int (*UnmaskInterrupt)(int irq);
-  int (*EventNotifyFromISR)(struct InterruptAPI *api, int hint);
-
-  void *context;
-};
-
-
 #ifdef __cplusplus
 }
 #endif 

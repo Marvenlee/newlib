@@ -7,11 +7,11 @@
 /*
  *
  */
-int createinterrupt (int irq, void (*interrupt_handler)(int irq, struct InterruptAPI *api))
+int addinterruptserver(int irq, int thread_id, int event)
 {
     int sc;
     
-    sc = _swi_createinterrupt(irq, interrupt_handler);
+    sc = _swi_addinterruptserver(irq, thread_id, event);
     
     if (sc < 0) {
         errno = -sc;
@@ -25,7 +25,7 @@ int createinterrupt (int irq, void (*interrupt_handler)(int irq, struct Interrup
 /*
  *
  */
-int maskinterrupt (int irq)
+int maskinterrupt(int irq)
 {
     int sc;
     
@@ -42,7 +42,7 @@ int maskinterrupt (int irq)
 /*
  *
  */
-int unmaskinterrupt (int irq)
+int unmaskinterrupt(int irq)
 {
     int sc;
     

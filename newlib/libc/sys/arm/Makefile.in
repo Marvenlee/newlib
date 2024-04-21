@@ -142,7 +142,10 @@ am_lib_a_OBJECTS = lib_a-_exit.$(OBJEXT) lib_a-access.$(OBJEXT) \
 	lib_a-warnx.$(OBJEXT) \
 	lib_a-vis.$(OBJEXT) \
 	lib_a-pwcache.$(OBJEXT) \
-	lib_a-getentropy.$(OBJEXT)
+	lib_a-getentropy.$(OBJEXT) \
+	\
+	lib_a-cthread_events.$(OBJEXT)
+	
 	
 # lib_a-template.$(OBJEXT)
 	
@@ -378,7 +381,8 @@ lib_a_SOURCES = \
   warnc.c \
   warnx.c \
   vis.c \
-  pwcache.c
+  pwcache.c \
+  pthread/cthread_events.c
 	
 # template.c	
 
@@ -1081,6 +1085,15 @@ lib_a-pwcache.o: pwcache.c
 
 lib_a-pwcache.obj: pwcache.c
 	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-pwcache.obj `if test -f 'pwcache.c'; then $(CYGPATH_W) 'pwcache.c'; else $(CYGPATH_W) '$(srcdir)/pwcache.c'; fi`
+
+
+
+lib_a-cthread_events.o: pthread/cthread_events.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-cthread_events.o `test -f 'pthread/cthread_events.c' || echo '$(srcdir)/'`pthread/cthread_events.c
+
+lib_a-cthread_events.obj: pthread/cthread_events.c
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CFLAGS) $(CFLAGS) -c -o lib_a-cthread_events.obj `if test -f 'pthread/cthread_events.c'; then $(CYGPATH_W) 'pthread/cthread_events.c'; else $(CYGPATH_W) '$(srcdir)/pthread/cthread_events.c'; fi`
+
 
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)

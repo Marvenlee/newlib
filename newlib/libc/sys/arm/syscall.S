@@ -61,7 +61,7 @@ SYSCALL4( _swi_virtualallocphys, 13)
 SYSCALL2( _swi_virtualfree, 14)
 SYSCALL2( _swi_virtualprotect, 15)
 
-SYSCALL1( _swi_createinterrupt, 16)
+SYSCALL3( _swi_addinterruptserver, 16)
 SYSCALL1( _swi_maskinterrupt, 17)
 SYSCALL1( _swi_unmaskinterrupt, 18)
 
@@ -165,7 +165,6 @@ SYSCALL2( _swi_getgroups, 88)
 SYSCALL2( _swi_get_priority, 89)
 SYSCALL2( _swi_setpriority, 90)
 
-
 SYSCALL2( _swi_fchmod, 92)
 SYSCALL3( _swi_fchown, 93)
 
@@ -174,4 +173,12 @@ SYSCALL2( _swi_clock_gettime, 94)
 SYSCALL2( _swi_clock_settime, 98)
 
 SYSCALL1( _swi_bdflush, 99)
+
+SYSCALL1( _swi_sigreturn, 100)
+
+SYSCALL2( _swi_thread_event_signal, 100)
+SYSCALL1( _swi_thread_event_wait, 101)
+SYSCALL1( _swi_thread_event_check, 102)
+
+
 

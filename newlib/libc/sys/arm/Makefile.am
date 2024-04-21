@@ -112,7 +112,9 @@ lib_a_SOURCES = \
   warn.c \
   warnc.c \
   warnx.c \
-  vis.c
+  vis.c \
+  pthread/cthread_events.c
+  
 	
 	
 lib_a_CCASFLAGS = $(AM_CCASFLAGS)

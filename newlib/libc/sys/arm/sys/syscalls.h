@@ -72,9 +72,6 @@ struct TimeVal
 };
 
 
-struct InterruptAPI;
-
-
 /*
  * Timer types
  */
@@ -144,14 +141,13 @@ int _swi_rmdir(const char *path);
 int _swi_unlink(const char *path);
 int _swi_ftruncate (int fd, off_t size);
 
+int _swi_rename(const char *oldname, const char *newname);
 
-int _swi_rename (const char *oldname, const char *newname);
+int _swi_pipe(int fdp[2]);
 
-int _swi_pipe (int fdp[2]);
-
-int _swi_createinterrupt (int irq, void (*interrupt_handler)(int irq, struct InterruptAPI *api));
-int _swi_maskinterrupt (int irq);
-int _swi_unmaskinterrupt (int irq);
+int _swi_addinterruptserver(int irq, int thread_id, int event);
+int _swi_maskinterrupt(int irq);
+int _swi_unmaskinterrupt(int irq);
 
 int _swi_sleep(int seconds);
 int _swi_alarm(int seconds);
@@ -248,6 +244,11 @@ int _swi_issetugid(void);
 int	_swi_setgroups(int ngroups, const gid_t *grouplist);
 int _swi_getgroups(int gidsetsize, gid_t grouplist[]);
 
+int _swi_thread_event_signal(pthread_t tid, int event);
+uint32_t _swi_thread_event_wait(uint32_t event_mask);
+uint32_t _swi_thread_event_check(uint32_t event_mask);
+
+
 /*
  * unistd.h 64-bit syscalls.
  */
@@ -274,10 +275,17 @@ int writemsg(int portid, msgid_t msgid, void *buf, size_t buf_sz, off_t offset);
 /*
  * Interrupt system calls
  */
-int createinterrupt (int irq, void (*interrupt_handler)(int irq, struct InterruptAPI *api));
+int addinterruptserver(int irq, int thread_id, int event);
 int maskinterrupt (int irq);
 int unmaskinterrupt (int irq);
 
+/*
+ *
+ */
+int cthread_event_signal(pthread_t tid, int event);
+uint32_t cthread_event_wait(uint32_t event_mask);
+uint32_t cthread_event_check(uint32_t event_mask);
+ 
 
 #ifdef __cplusplus
 }
