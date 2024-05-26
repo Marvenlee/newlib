@@ -165,6 +165,7 @@ int _swi_createmsgport(const char *path, uint32_t flags, struct stat *stat, int 
 int _swi_unmount(int fd, bool force);
 int _swi_renamemsgport(const char *new_path, const char *old_path);
 int _swi_pivotroot(const char *new_root, const char *old_root);
+int _swi_ismount(const char *path);
 
 int _swi_sendrec(int fd, int siov_cnt, struct IOV *siov, int riov_cnt, struct IOV *riov);
 int _swi_getmsg(int portid, msgid_t *msgid, void *buf, size_t buf_sz);

@@ -70,7 +70,7 @@ SYSCALL3( _swi_poll, 19)
 SYSCALL2( _swi_exec, 20)
 
 SYSCALL4( _swi_mount, 21)
-SYSCALL2( _swi_unmount, 22)
+SYSCALL2( _swi_unmount, 22)   // deprecated
 
 SYSCALL5( _swi_sendrec, 24)
 SYSCALL4( _swi_getmsg, 24)
@@ -100,7 +100,7 @@ SYSCALL1( _swi_rmdir, 42)
 SYSCALL2( _swi_rename, 43)
 
 SYSCALL1( _swi_pipe, 44)
-SYSCALL1( _swi_socketpair, 45)
+SYSCALL1( _swi_socketpair, 45)   // deprecated
 
 SYSCALL1( _swi_chdir, 46)
 SYSCALL1( _swi_fchdir, 47)
@@ -165,6 +165,8 @@ SYSCALL2( _swi_getgroups, 88)
 SYSCALL2( _swi_get_priority, 89)
 SYSCALL2( _swi_setpriority, 90)
 
+// SYSCALL1(_swi_sysconf, 91) // deprecated
+
 SYSCALL2( _swi_fchmod, 92)
 SYSCALL3( _swi_fchown, 93)
 
@@ -176,9 +178,10 @@ SYSCALL1( _swi_bdflush, 99)
 
 SYSCALL1( _swi_sigreturn, 100)
 
-SYSCALL2( _swi_thread_event_signal, 100)
-SYSCALL1( _swi_thread_event_wait, 101)
-SYSCALL1( _swi_thread_event_check, 102)
+SYSCALL2( _swi_thread_event_signal, 101)
+SYSCALL1( _swi_thread_event_wait, 102)
+SYSCALL1( _swi_thread_event_check, 103)
 
+SYSCALL1( _swi_ismount, 104)
 
 

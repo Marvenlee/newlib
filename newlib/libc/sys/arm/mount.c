@@ -75,6 +75,21 @@ int pivotroot(char *new_root, char *old_root)
 	return sc;
 }
 
+
+int ismount(const char *path)
+{
+    int sc;
+    
+    sc = _swi_ismount(path);
+    
+    if (sc < 0) {
+        errno = -sc;
+        return -1;
+    }
+	
+	return sc;
+}
+
 /*
  *
  */

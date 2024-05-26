@@ -95,6 +95,7 @@ int createmsgport(char *mount_path, uint32_t flags, struct stat *stat, int backl
 int unmount(int fd, bool force);
 int renamemsgport(char *new_path, char *old_path);
 int pivotroot(char *new_root, char *old_root);
+int ismount(const char *path);
 int getfsstat(struct statfs *buf, int bufsize, int flags);
 int getmntinfo(struct statfs **mntbufp, int flags);
 int bdflush(int fd);
