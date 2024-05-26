@@ -87,8 +87,6 @@ void debug_printf(const char *format, ...);
 
 #else
 
-#error "NDEBUG defined"
-
 #define log_error(fmt, args...)
 #define log_warn(fmt, args...)
 #define log_info(fmt, args...)
