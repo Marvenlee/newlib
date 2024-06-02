@@ -94,6 +94,7 @@ am_lib_a_OBJECTS = lib_a-_exit.$(OBJEXT) lib_a-access.$(OBJEXT) \
 	lib_a-rename.$(OBJEXT) lib_a-resource.$(OBJEXT) \
 	lib_a-rewinddir.$(OBJEXT) lib_a-select.$(OBJEXT) \
 	lib_a-siglist.$(OBJEXT) lib_a-signal.$(OBJEXT) \
+	lib_a-sigtramp.$(OBJEXT) \
 	lib_a-syscall.$(OBJEXT) lib_a-sleep.$(OBJEXT) \
 	lib_a-stat.$(OBJEXT) lib_a-statvfs.$(OBJEXT) \
 	lib_a-sync.$(OBJEXT) lib_a-sysconf.$(OBJEXT) \
@@ -327,6 +328,7 @@ lib_a_SOURCES = \
 	select.c \
 	siglist.c \
 	signal.c \
+	sigtramp.S \
 	syscall.S \
 	sleep.c \
 	stat.c \
@@ -447,6 +449,15 @@ distclean-compile:
 
 .S.obj:
 	$(CPPASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+lib_a-sigtramp.o: sigtramp.S
+	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-sigtramp.o `test -f 'sigtramp.S' || echo '$(srcdir)/'`sigtramp.S
+
+lib_a-sigtramp.obj: sigtramp.S
+	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-sigtramp.obj `if test -f 'sigtramp.S'; then $(CYGPATH_W) 'sigtramp.S'; else $(CYGPATH_W) '$(srcdir)/sigtramp.S'; fi`
+
+
+
 
 lib_a-syscall.o: syscall.S
 	$(CCAS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(lib_a_CCASFLAGS) $(CCASFLAGS) -c -o lib_a-syscall.o `test -f 'syscall.S' || echo '$(srcdir)/'`syscall.S

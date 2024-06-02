@@ -5,7 +5,14 @@
 #include <signal.h>
 #include <sys/signal.h>
 #include <unistd.h>
+#include <string.h>
 
+
+/*
+ *
+ */
+void __signal_trampoline(void);
+ 
 
 /*
  *
@@ -46,8 +53,13 @@ int kill (int pid, int sig)
 int sigaction (int sig, const struct sigaction *act, struct sigaction *oact)
 {
     int sc;
-
-    sc = _swi_sigaction(sig, act, oact);
+    struct sigaction tact;
+    
+    memcpy(&tact, act, sizeof tact);
+    tact.sa_restorer = __signal_trampoline;
+    tact.sa_flags |= SA_RESTORER;
+    
+    sc = _swi_sigaction(sig, &tact, oact);
 
     if (sc < 0) {
         errno = -sc;

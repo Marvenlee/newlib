@@ -58,6 +58,7 @@ lib_a_SOURCES = \
 	select.c \
 	siglist.c \
 	signal.c \
+  sigtramp.S \
 	syscall.S \
 	sleep.c \
 	stat.c \
